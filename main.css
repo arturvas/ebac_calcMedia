@@ -86,6 +86,10 @@ table td img {
     width: 30px;
 }
 
+tfoot {
+    font-weight: bold;
+}
+
 .resultado {
     padding: 8px;
     font-weight: bold;

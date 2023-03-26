@@ -21,17 +21,22 @@ form.addEventListener('submit', function(e) {
 function adicionaLinha() {
     const iNomeAtiv = document.getElementById('nome-atividade');
     const iNotaAtiv = document.getElementById('nota-atividade');
-
-    atividades.push(iNomeAtiv.value);
-    notas.push(parseFloat(iNotaAtiv.value));
-
-    let linha = '<tr>';
-    linha += `<td>${iNomeAtiv.value}</td>`;
-    linha += `<td>${iNotaAtiv.value}</td>`;
-    linha += `<td>${iNotaAtiv.value >= notaMinima ? imgAprovado : imgReprovado}</td>`; //if = '?' / else = ':'
-    linha += '</tr>';
-
-    linhas += linha;
+    
+    //recurso para impedir atividades duplicadas
+    if (atividades.includes(iNomeAtiv.value)) { //includes - verifica se array contem um item especifico || toLowerCase para evitar problemas de casesensitive
+        alert(`A atividade: ${iNomeAtiv.value} já foi inserida`);
+    } else {
+        atividades.push(iNomeAtiv.value); //push - adicionar um item à um array
+        notas.push(parseFloat(iNotaAtiv.value));
+    
+        let linha = '<tr>';
+        linha += `<td>${iNomeAtiv.value}</td>`;
+        linha += `<td>${iNotaAtiv.value}</td>`;
+        linha += `<td>${iNotaAtiv.value >= notaMinima ? imgAprovado : imgReprovado}</td>`; //if = '?' / else = ':'
+        linha += '</tr>';
+    
+        linhas += linha;
+    }
 
     //limpar o campo depois de adicionar o conteudo
     iNomeAtiv.value = '';
@@ -46,7 +51,7 @@ function atualizaTabela(){
 function atualizaMediaFinal(){
     const mediaFinal = calculaMediaFinal();
 
-    document.getElementById('media-final-valor').innerHTML = mediaFinal;
+    document.getElementById('media-final-valor').innerHTML = mediaFinal.toFixed(2);
     document.getElementById('media-final-resultado').innerHTML = mediaFinal >= notaMinima ? spanAprovado : spanReprovado;
 }
 

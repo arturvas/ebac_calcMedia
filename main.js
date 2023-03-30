@@ -15,7 +15,7 @@ form.addEventListener('submit', function(e) {
     adicionaLinha();
     atualizaTabela();
     atualizaMediaFinal();
-})
+});
 
 // organizando o codigo por funcoes
 function adicionaLinha() {
@@ -41,19 +41,19 @@ function adicionaLinha() {
     //limpar o campo depois de adicionar o conteudo
     iNomeAtiv.value = '';
     iNotaAtiv.value = '';
-}
+};
 
 function atualizaTabela(){
     const corpoTab = document.querySelector('tbody');
     corpoTab.innerHTML = linhas; //para inserir um conteudo dentro de uma tag
-}
+};
 
 function atualizaMediaFinal(){
     const mediaFinal = calculaMediaFinal();
 
     document.getElementById('media-final-valor').innerHTML = mediaFinal.toFixed(2);
     document.getElementById('media-final-resultado').innerHTML = mediaFinal >= notaMinima ? spanAprovado : spanReprovado;
-}
+};
 
 function calculaMediaFinal(){
     let somaDasNotas = 0;
@@ -63,4 +63,4 @@ function calculaMediaFinal(){
     }
 
     return somaDasNotas / notas.length; //length - retorna ou define o nummero de elementos em uma array
-}
+};
